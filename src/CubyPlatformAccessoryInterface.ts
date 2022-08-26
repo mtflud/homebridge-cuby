@@ -1,0 +1,3 @@
+interface CubyPlatformAccessoryInterface {
+  updateCharacteristics(): void
+}
