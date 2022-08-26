@@ -38,5 +38,6 @@
     "homebridge": "^1.5.0",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"
-  }
+  },
+  "homepage": "https://github.com/mtflud/homebridge-cuby/"
 }
