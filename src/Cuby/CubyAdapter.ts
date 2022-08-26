@@ -2,7 +2,6 @@ import { CharacteristicValue, Logger } from 'homebridge'
 import { ACMode, CubyDevice, FanMode, OnOffProperty, VerticalVaneMode } from './types'
 import Cuby from './Cuby'
 import CubyPlatform from '../CubyPlatform'
-import { TargetHeaterCoolerState } from 'hap-nodejs/dist/lib/definitions'
 import CubyStateManager from './CubyStateManager'
 
 export enum Commands {
@@ -66,9 +65,9 @@ class CubyAdapter {
 
   public toCubyACMode(value: CharacteristicValue): ACMode {
     switch (value) {
-      case TargetHeaterCoolerState.HEAT:
+      case this.platform.Characteristic.TargetHeaterCoolerState.HEAT:
         return ACMode.HEAT
-      case TargetHeaterCoolerState.COOL:
+      case this.platform.Characteristic.TargetHeaterCoolerState.COOL:
         return ACMode.COOL
       default:
         return ACMode.AUTO
@@ -78,11 +77,11 @@ class CubyAdapter {
   public fromCubyACMode(state: ACMode): CharacteristicValue {
     switch (state) {
       case ACMode.COOL:
-        return TargetHeaterCoolerState.COOL
+        return this.platform.Characteristic.TargetHeaterCoolerState.COOL
       case ACMode.HEAT:
-        return TargetHeaterCoolerState.HEAT
+        return this.platform.Characteristic.TargetHeaterCoolerState.HEAT
       default:
-        return TargetHeaterCoolerState.AUTO
+        return this.platform.Characteristic.TargetHeaterCoolerState.AUTO
     }
   }
 
