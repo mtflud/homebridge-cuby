@@ -26,10 +26,7 @@ After [Homebridge](https://github.com/nfarina/homebridge) has been installed:
 
 ## Configuration (Config UI X)
 
-This plugin supports a custom user interface making configuration via **homebridge-config-ui-x** even easier! Below you can see how easy it is to create, edit or delete a new TV for the config.json using the custom user interface. To use the custom user interface you need at least homebridge-config-ui-x v4.34.0!
-
-
-https://user-images.githubusercontent.com/34152761/124396673-4b249700-dd0b-11eb-8deb-b7ab18c429e7.mov
+This plugin supports a custom user interface making configuration via **homebridge-config-ui-x** even easier! To use the custom user interface you need at least homebridge-config-ui-x v4.34.0!
 
 
 ## Configuration (Manually)
