@@ -49,8 +49,11 @@ class CubyPlatform implements DynamicPlatformPlugin {
     this.config = config
     this.Service = hap.Service
     this.Characteristic = hap.Characteristic
+    this.cubyClient = new Cuby(config?.username || '', config?.password || '')
 
-    this.cubyClient = new Cuby(this.config.username || '', this.config.password || '')
+    if (!api || !config) {
+      return
+    }
 
     /*
      * When this event is fired, homebridge restored all cached accessories from disk and did call their respective
