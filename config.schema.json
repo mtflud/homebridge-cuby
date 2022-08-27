@@ -1,0 +1,80 @@
+{
+  "pluginAlias": "Cuby",
+  "pluginType": "platform",
+  "singular": true,
+  "footerDisplay": "For documentation please see [GitHub repository](https://github.com/SeydX/homebridge-bravia-tvos)",
+  "schema": {
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "required": true,
+      "default": "Cuby",
+      "description": "Plugin name as displayed in the Homebridge log"
+    },
+    "username": {
+      "title": "Username",
+      "type": "string",
+      "description": "Your Cuby's account username",
+      "required": true
+    },
+    "password": {
+      "title": "Password",
+      "type": "string",
+      "required": true,
+      "description": "Your Cuby's account password"
+    },
+    "displaySwitchesEnabled": {
+      "title": "Whether or not to expose 'display' switches for each Cuby device",
+      "type": "boolean",
+      "default": false
+    },
+    "turboSwitchesEnabled": {
+      "title": "Whether or not to expose 'turbo mode' switches for each Cuby device",
+      "type": "boolean",
+      "default": false
+    },
+    "longSwitchesEnabled": {
+      "title": "Whether or not to expose 'long mode' switches for each Cuby device",
+      "type": "boolean",
+      "default": false
+    },
+    "ecoSwitchesEnabled": {
+      "title": "Whether or not to expose 'eco mode' switches for each Cuby device",
+      "type": "boolean",
+      "default": false
+    },
+    "pollInterval": {
+      "title": "Poll Interval",
+      "type": "integer",
+      "placeholder": "30",
+      "description": "Frequency of refreshes of the homebridge accessory cache, in seconds. Values less than 10 seconds will be ignored."
+    }
+  },
+  "layout": [
+    "name",
+    {
+      "type": "flex",
+      "flex-flow": "row wrap",
+      "items": [
+        "username",
+        {
+          "key": "password",
+          "type": "password"
+        }
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "Optional Settings",
+      "expandable": true,
+      "expanded": false,
+      "items": [
+        "displaySwitchesEnabled",
+        "turboSwitchesEnabled",
+        "longSwitchesEnabled",
+        "ecoSwitchesEnabled",
+        "pollInterval"
+      ]
+    }
+  ]
+}

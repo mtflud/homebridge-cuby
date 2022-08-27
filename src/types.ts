@@ -1,8 +1,9 @@
 export interface CubyPlatformConfig {
-  token?: string
+  username?: string
+  password?: string
   pollInterval?: number
-  displaySwitchEnabled?: boolean
-  turboSwitchEnabled?: boolean
-  longSwitchEnabled?: boolean
-  ecoSwitchEnabled?: boolean
+  displaySwitchesEnabled?: boolean
+  turboSwitchesEnabled?: boolean
+  longSwitchesEnabled?: boolean
+  ecoSwitchesEnabled?: boolean
 }

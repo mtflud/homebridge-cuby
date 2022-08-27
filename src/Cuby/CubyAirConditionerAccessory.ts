@@ -162,6 +162,11 @@ class CubyAirConditionerAccessory implements CubyPlatformAccessoryInterface {
         commandArgument: isActive ? OnOffProperty.ON : OnOffProperty.OFF,
       })
       this.stateManager.acState.power = isActive ? OnOffProperty.ON : OnOffProperty.OFF
+      if (isActive) {
+        this.service
+          .getCharacteristic(this.platform.Characteristic.RotationSpeed)
+          ?.updateValue(this.deviceAdapter.fromCubyFanMode(this.stateManager.acState.fan))
+      }
     } catch (error) {
       this.platform.log.error('Cannot set device active', error)
     }

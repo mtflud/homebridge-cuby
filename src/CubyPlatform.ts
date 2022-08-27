@@ -41,7 +41,7 @@ class CubyPlatform implements DynamicPlatformPlugin {
   private readonly api: API
   private readonly cubyClient: Cuby
 
-  constructor(log: Logging, config: PlatformConfig, api: API) {
+  constructor(log: Logging, config: PlatformConfig & CubyPlatformConfig, api: API) {
     this.api = api
     hap = this.api.hap
 
@@ -50,8 +50,7 @@ class CubyPlatform implements DynamicPlatformPlugin {
     this.Service = hap.Service
     this.Characteristic = hap.Characteristic
 
-    // probably parse config or something here
-    this.cubyClient = new Cuby(this.config.token || '')
+    this.cubyClient = new Cuby(this.config.username || '', this.config.password || '')
 
     /*
      * When this event is fired, homebridge restored all cached accessories from disk and did call their respective
@@ -74,25 +73,25 @@ class CubyPlatform implements DynamicPlatformPlugin {
             )
 
             await this.addHeaterCoolerAccessory({ device, stateManager })
-            this.config.displaySwitchEnabled &&
+            this.config.displaySwitchesEnabled &&
               (await this.addSwitchAccessory({
                 device,
                 controllableProperty: SwitchControllableProperty.DISPLAY,
                 stateManager,
               }))
-            this.config.ecoSwitchEnabled &&
+            this.config.ecoSwitchesEnabled &&
               (await this.addSwitchAccessory({
                 device,
                 controllableProperty: SwitchControllableProperty.ECO,
                 stateManager,
               }))
-            this.config.turboSwitchEnabled &&
+            this.config.turboSwitchesEnabled &&
               (await this.addSwitchAccessory({
                 device,
                 controllableProperty: SwitchControllableProperty.TURBO,
                 stateManager,
               }))
-            this.config.longSwitchEnabled &&
+            this.config.longSwitchesEnabled &&
               (await this.addSwitchAccessory({
                 device,
                 controllableProperty: SwitchControllableProperty.LONG,
@@ -105,8 +104,8 @@ class CubyPlatform implements DynamicPlatformPlugin {
           this.log.warn(
             "Something went wrong while contacting Cuby's servers. Retrying in 30 seconds..."
           )
-          if (!this.config.token) {
-            this.log.error('No token was specified on the configuration file')
+          if (!this.config.username || !this.config.password) {
+            this.log.error('No username or password were specified on the configuration file')
           }
           await wait(30000)
         }
@@ -114,8 +113,14 @@ class CubyPlatform implements DynamicPlatformPlugin {
 
       this.api.registerPlatformAccessories(
         PLUGIN_NAME,
-        PLATFORM_NAME,
+        this.config.name || PLATFORM_NAME,
         this.accessories.filter((a) => !this.cachedAccessories.find((ca) => ca.UUID === a.UUID))
+      )
+
+      this.api.unregisterPlatformAccessories(
+        PLUGIN_NAME,
+        this.config.name || PLATFORM_NAME,
+        this.cachedAccessories.filter((a) => !this.accessories.find((ca) => ca.UUID === a.UUID))
       )
     })
   }
