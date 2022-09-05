@@ -2,7 +2,7 @@
   "pluginAlias": "Cuby",
   "pluginType": "platform",
   "singular": true,
-  "footerDisplay": "For documentation please see [GitHub repository](https://github.com/SeydX/homebridge-bravia-tvos)",
+  "footerDisplay": "For documentation please see [GitHub repository](https://github.com/mtflud/homebridge-cuby)",
   "schema": {
     "name": {
       "title": "Name",
