@@ -51,7 +51,8 @@ class CubyPlatform implements DynamicPlatformPlugin {
     this.Characteristic = hap.Characteristic
     this.cubyClient = new Cuby(config?.username || '', config?.password || '')
 
-    if (!api || !config) {
+    if (!api || !config?.username || !config?.password) {
+      this.log.error('Skipping initialization. Configuration parameters not provided.')
       return
     }
 
@@ -107,9 +108,6 @@ class CubyPlatform implements DynamicPlatformPlugin {
           this.log.warn(
             "Something went wrong while contacting Cuby's servers. Retrying in 30 seconds..."
           )
-          if (!this.config.username || !this.config.password) {
-            this.log.error('No username or password were specified on the configuration file')
-          }
           await wait(30000)
         }
       }

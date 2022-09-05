@@ -185,10 +185,14 @@ class CubyAdapter {
   }
 
   private executeAcCommand(acCommand: { [prop: string]: any }) {
-    return this.cubyClient.setACState(this.device.id, {
-      ...this.stateManager.acState,
-      ...acCommand,
-    })
+    try {
+      return this.cubyClient.setACState(this.device.id, {
+        ...this.stateManager.acState,
+        ...acCommand,
+      })
+    } catch (error: any) {
+      this.log.error('Error while executing command: ' + error?.message || error?.status)
+    }
   }
 }
 

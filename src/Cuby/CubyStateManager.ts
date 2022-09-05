@@ -55,20 +55,32 @@ class CubyStateManager {
     }, intervalInSeconds)
   }
 
-  private async getDeviceState(): Promise<DeviceState> {
-    const { data } = await this.cubyClient.getDevice(this.device.id)
-    return data
+  private async getDeviceState(): Promise<DeviceState | undefined> {
+    try {
+      const { data } = await this.cubyClient.getDevice(this.device.id)
+      return data
+    } catch (error: any) {
+      this.log.error('Error while fetching device state: ' + error?.message || error?.status)
+    }
   }
 
-  private async getACState(): Promise<ACState> {
-    return await this.cubyClient.getACState(this.device.id)
+  private async getACState(): Promise<ACState | undefined> {
+    try {
+      return await this.cubyClient.getACState(this.device.id)
+    } catch (error: any) {
+      this.log.error('Error while fetching AC state: ' + error?.message || error?.status)
+    }
   }
 
   public async updateStatus() {
     try {
       const [acState, deviceState] = await Promise.all([this.getACState(), this.getDeviceState()])
-      this.acState = acState
-      this.deviceState = deviceState
+      if (acState) {
+        this.acState = acState
+      }
+      if (deviceState) {
+        this.deviceState = deviceState
+      }
     } catch (error: any) {
       this.log.error('Error while fetching device status: ' + error?.message || error?.status)
     }
