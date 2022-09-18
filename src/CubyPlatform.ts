@@ -14,7 +14,7 @@ import Cuby from './Cuby/Cuby'
 import { CubyDevice } from './Cuby/types'
 import CubyAdapter from './Cuby/CubyAdapter'
 import CubyAirConditionerAccessory from './Cuby/CubyAirConditionerAccessory'
-import { DEFAULT_POLL_INTERVAL_S, PLATFORM_NAME, PLUGIN_NAME } from './consts'
+import { DEFAULT_POLL_INTERVAL_S, PLATFORM_NAME, PLUGIN_NAME, SUPPORTED_MODELS } from './consts'
 import CubySwitchAccessory, {
   getSwitchName,
   SwitchControllableProperty,
@@ -69,8 +69,12 @@ class CubyPlatform implements DynamicPlatformPlugin {
         try {
           const devices = await this.cubyClient.getDevices()
           for (const device of devices) {
-            if (Number(device.model) !== 400) {
-              this.log.warn('Skipping device initialization. Model not supported', device.name)
+            if (!SUPPORTED_MODELS.includes(device.model.toString())) {
+              this.log.warn('Skipping device initialization for device:', device.name)
+              this.log.warn(
+                'Cannot confirm if device is supported. Please open an issue if you think this is an error. Model is:',
+                device.model.toString()
+              )
               continue
             }
             const stateManager = new CubyStateManager(

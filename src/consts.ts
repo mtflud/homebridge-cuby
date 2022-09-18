@@ -5,3 +5,5 @@ export const MIN_TEMPERATURE_C = 16
 export const MAX_TEMPERATURE_C = 30
 
 export const DEFAULT_POLL_INTERVAL_S = 30
+
+export const SUPPORTED_MODELS = ['300', '400']

@@ -1,6 +1,6 @@
 {
   "name": "homebridge-cuby",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A Homebridge plugin to integrate Cuby Smart devices",
   "main": "dist/index.js",
   "scripts": {
