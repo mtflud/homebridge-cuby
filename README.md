@@ -6,7 +6,7 @@
 
 ## Info
 
-This is a plugin for [Homebridge](https://github.com/nfarina/homebridge) to control your [**Cuby**](https://cuby.mx/collections/cuby) devices. Currently only G4 models (400) are supported.
+This is a plugin for [Homebridge](https://github.com/nfarina/homebridge) to control your [**Cuby**](https://cuby.mx/collections/cuby) devices. Currently only G3 (200) and G4 (400) models are supported.
 
 This plugin supports following functions:
 
