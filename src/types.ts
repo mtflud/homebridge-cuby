@@ -6,4 +6,5 @@ export interface CubyPlatformConfig {
   turboSwitchesEnabled?: boolean
   longSwitchesEnabled?: boolean
   ecoSwitchesEnabled?: boolean
+  exposeExternalHumiditySensors?: boolean
 }

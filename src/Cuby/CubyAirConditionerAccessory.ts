@@ -7,6 +7,7 @@ import CubyStateManager from './CubyStateManager'
 
 class CubyAirConditionerAccessory implements CubyPlatformAccessoryInterface {
   private service: Service
+  private humiditySensorService: Service | null
   private device: CubyDevice
 
   constructor(
@@ -78,6 +79,15 @@ class CubyAirConditionerAccessory implements CubyPlatformAccessoryInterface {
       .getCharacteristic(this.platform.Characteristic.SwingMode)
       .onGet(this.getSwingMode.bind(this))
       .onSet(this.setSwingMode.bind(this))
+
+    this.humiditySensorService = !this.platform.config.exposeExternalHumiditySensors
+      ? null
+      : this.accessory.getService(this.platform.Service.HumiditySensor) ||
+        this.accessory.addService(this.platform.Service.HumiditySensor)
+
+    this.humiditySensorService
+      ?.getCharacteristic(this.platform.Characteristic.CurrentRelativeHumidity)
+      .onGet(this.getCurrentHumidity.bind(this))
   }
 
   updateCharacteristics(): void {
@@ -107,6 +117,10 @@ class CubyAirConditionerAccessory implements CubyPlatformAccessoryInterface {
 
       this.service
         .getCharacteristic(this.platform.Characteristic.CurrentRelativeHumidity)
+        ?.updateValue(+currentDeviceState.humidity)
+
+      this.humiditySensorService
+        ?.getCharacteristic(this.platform.Characteristic.CurrentRelativeHumidity)
         ?.updateValue(+currentDeviceState.humidity)
 
       this.service

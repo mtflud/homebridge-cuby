@@ -44,7 +44,8 @@ class CubyStateManager {
       currentTime: new Date().toTimeString(),
     }
 
-    const validUpdateInterval = updateInterval < 10 ? DEFAULT_POLL_INTERVAL_S : updateInterval
+    const validUpdateInterval =
+      isNaN(updateInterval) || updateInterval < 10 ? DEFAULT_POLL_INTERVAL_S : updateInterval
     this.startPollingForStatus(validUpdateInterval * 1000)
   }
 

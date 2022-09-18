@@ -69,6 +69,10 @@ class CubyPlatform implements DynamicPlatformPlugin {
         try {
           const devices = await this.cubyClient.getDevices()
           for (const device of devices) {
+            if (Number(device.model) !== 400) {
+              this.log.warn('Skipping device initialization. Model not supported', device.name)
+              continue
+            }
             const stateManager = new CubyStateManager(
               this.cubyClient,
               this.log,

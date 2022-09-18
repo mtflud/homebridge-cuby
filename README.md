@@ -6,16 +6,16 @@
 
 ## Info
 
-This is a plugin for [Homebridge](https://github.com/nfarina/homebridge) to control your [**Cuby**](https://cuby.mx/collections/cuby) devices. Currently only minisplit controllers are supported.
+This is a plugin for [Homebridge](https://github.com/nfarina/homebridge) to control your [**Cuby**](https://cuby.mx/collections/cuby) devices. Currently only G4 models (400) are supported.
 
 This plugin supports following functions:
 
-- **Thermostat:** Control Cool, Auto, heat and Off modes
-- **Fan Speed:** Control Low, medium and High settings.
-- **Current Temperature:** Measured from your Cuby Device
-- **Current Relative Humidity:** Measured from your Cuby Device
+- **Thermostat:** Control Cool, Auto, Heat and Off modes.
+- **Fan Speed:** Control Low, Medium and High settings.
+- **Current Temperature:** Measured from your Cuby Device.
+- **Current Relative Humidity:** Measured from your Cuby Device.
 - **Oscillation:** Only on or off supported. Maps to vertical vane oscillation.
-- **Switches:** To toggle "eco", "turbo" and "long" modes in you minisplit. A toggle for the display is also supported.
+- **Switches:** To toggle "eco", "turbo" and "long" modes in you minisplit. A toggle for controlling the display is also supported.
 
 ## Installation instructions
 
@@ -37,36 +37,37 @@ If you cannot use the custom user interface or want to edit the config.json manu
 
  ```javascript
 {
- "bridge": {
-   ...
-},
- "accessories": [
-   ...
-],
- "platforms": [
-    {
-      "platform": "Cuby"
-      "name": "Cuby",
-      "username": "username@mail.com",
-      "password": "mycubypassword"  ,
-    }
- ]
+    "bridge": {
+    ...
+    },
+    "accessories": [
+        ...
+    ], 
+    "platforms": [
+        {
+            "platform": "Cuby",
+            "name": "Cuby",
+            "username": "username@email.com",
+            "password": "mycubypassword"
+        }
+    ]
 }
 
  ```
 
 ## Options General
 
-| **Attributes** | **Required** | **Usage**                                                              | **Default** | **Options** |
-|----------------|--------------|------------------------------------------------------------------------|-------------|-------------|
-| name           | **X** | Name for the log.                                                      | `Cuby`      
-| username       | **X** | Your Cuby's account username                                           | `''`        | N/A
-| password       | **X** | Your Cuby's account password                                           | `''`        | N/A
-| pollInterval           |  | Time in seconds the plugin will poll for updates on your devices       | `30`        | N/A
-| displaySwitchesEnabled          |  | Whether or not to enable the "display" switch for each of your devices | `true`      | `true`, `false`
-| turboSwitchesEnabled          |  | Whether or not to enable the "turbo" switch for each of your devices   | `true`      | `true`, `false`
-| longSwitchesEnabled          |  | Whether or not to enable the "long" switch for each of your devices    | `true`      | `true`, `false`
-| ecoSwitchesEnabled          |  | Whether or not to enable the "eco" switch for each of your devices     | `true`      | `true`, `false`
+| **Attributes** | **Required** | **Usage**                                                                 | **Default** | **Options** |
+|----------------|--------------|---------------------------------------------------------------------------|-------------|-------------|
+| name           | **X** | Name for the log.                                                         | `Cuby`      
+| username       | **X** | Your Cuby's account username                                              | `''`        | N/A
+| password       | **X** | Your Cuby's account password                                              | `''`        | N/A
+| pollInterval           |  | Time in seconds the plugin will poll for updates on your devices          | `30`        | N/A
+| displaySwitchesEnabled          |  | Whether or not to enable the "display" switch for each of your devices    | `false`     | `true`, `false`
+| turboSwitchesEnabled          |  | Whether or not to enable the "turbo" switch for each of your devices      | `false`     | `true`, `false`
+| longSwitchesEnabled          |  | Whether or not to enable the "long" switch for each of your devices       | `false`     | `true`, `false`
+| ecoSwitchesEnabled          |  | Whether or not to enable the "eco" switch for each of your devices        | `false`     | `true`, `false`
+| exposeExternalHumiditySensors          |  | Whether or not to expose an external humidity sensor for each Cuby device | `false`     | `true`, `false`
 
 
 ## Contributing
