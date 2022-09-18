@@ -43,6 +43,11 @@
       "type": "boolean",
       "default": false
     },
+    "exposeExternalHumiditySensors": {
+      "title": "Whether or not to expose an external humidity sensor for each Cuby device",
+      "type": "boolean",
+      "default": false
+    },
     "pollInterval": {
       "title": "Poll Interval",
       "type": "integer",
@@ -73,6 +78,7 @@
         "turboSwitchesEnabled",
         "longSwitchesEnabled",
         "ecoSwitchesEnabled",
+        "exposeExternalHumiditySensors",
         "pollInterval"
       ]
     }
