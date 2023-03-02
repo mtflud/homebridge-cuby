@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/homebridge-cuby.svg?style=flat-square)](https://www.npmjs.com/package/homebridge-cuby)
 [![npm](https://img.shields.io/npm/dt/homebridge-cuby.svg?style=flat-square)](https://www.npmjs.com/package/homebridge-cuby)
 [![GitHub last commit](https://img.shields.io/github/last-commit/mtflud/homebridge-cuby.svg?style=flat-square)](https://github.com/mtflud/homebridge-cuby)
+[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
 
 ## Info
 
